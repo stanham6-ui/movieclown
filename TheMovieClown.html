@@ -1,225 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>The Movie Clown — Official</title>
-  <style>
-    :root {
-      --accent: #ff1e00;
-      --bg: #000;
-      --muted: #cfcfcf;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: #eee;
-      font-family: Arial, Helvetica, sans-serif;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      scroll-behavior: smooth;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Movie Clown — Official</title>
+<style>
+:root {
+  --accent:#ff1e00;
+  --bg:#000;
+  --muted:#cfcfcf;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:#eee;
+  font-family:'Open Sans',Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  scroll-behavior:smooth;
+}
 
-    /* Nav */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(10,10,10,0.95);
-      padding: 12px 10px;
-      text-align: center;
-      z-index: 50;
-      border-bottom: 1px solid rgba(255,30,0,0.06);
-    }
-    nav a {
-      color: var(--accent);
-      margin: 0 16px;
-      text-decoration: none;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    nav a:hover { color: #fff; }
+/* Nav */
+nav{
+  position:fixed;top:0;width:100%;
+  background:rgba(10,10,10,.95);
+  padding:12px 10px;text-align:center;z-index:50;
+  border-bottom:1px solid rgba(255,30,0,.06)
+}
+nav a{
+  color:var(--accent);
+  margin:0 16px;text-decoration:none;
+  font-weight:700;text-transform:uppercase;
+  letter-spacing:1px;font-size:.95rem
+}
+nav a:hover{color:#fff}
 
-    .wrap {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 90px 16px 60px;
-    }
+/* Animations */
+.fade{
+  opacity:0;transform:translateY(20px);
+  transition:opacity .8s ease,transform .8s ease
+}
+.fade.visible{opacity:1;transform:translateY(0)}
+.glow{text-shadow:0 0 15px var(--accent)}
 
-    /* Hero */
-    .hero {
-      text-align: center;
-      padding: 22px 0 10px;
-    }
-    .hero h1 {
-      margin: 0 auto 10px;
-      color: var(--accent);
-      font-size: 2.2rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .poster {
-      display:block;
-      margin: 22px auto;
-      max-width: 520px;
-      width: 82%;
-      border-radius: 8px;
-      border: 3px solid rgba(255,30,0,0.18);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.7), 0 0 20px rgba(255,30,0,0.08);
-    }
-    .lead {
-      color: var(--muted);
-      max-width: 820px;
-      margin: 18px auto;
-      text-align: center;
-      font-size: 1.05rem;
-      line-height: 1.6;
-    }
+/* Hero */
+.hero{
+  text-align:center;
+  padding:110px 16px 60px;
+}
+.hero h1{
+  color:var(--accent);
+  font-size:2.4rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.poster{
+  margin:22px auto;display:block;
+  max-width:520px;width:82%;
+  border-radius:8px;
+  border:3px solid rgba(255,30,0,.18);
+  box-shadow:0 8px 40px rgba(0,0,0,.7),0 0 20px rgba(255,30,0,.08)
+}
+.lead{
+  color:var(--muted);
+  max-width:820px;
+  margin:18px auto;text-align:center;
+  font-size:1.05rem;line-height:1.6
+}
+.btn{
+  background:var(--accent);
+  color:#fff;border:none;
+  padding:12px 28px;
+  font-size:1rem;
+  border-radius:30px;
+  margin-top:22px;cursor:pointer;
+  text-transform:uppercase;
+  transition:.3s
+}
+.btn:hover{background:#fff;color:var(--accent)}
 
-    /* Card for explicit image info */
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius: 10px;
-      padding: 20px;
-      margin: 28px auto;
-      color: #d6d6d6;
-      text-align: justify;
-      max-width: 900px;
-      box-shadow: 0 6px 26px rgba(0,0,0,0.6);
-    }
-    .card h2 { color: #fff; margin-top: 0; }
+/* Card sections */
+.card{
+  background:rgba(255,255,255,.02);
+  border-radius:10px;
+  padding:20px;margin:28px auto;
+  color:#d6d6d6;text-align:justify;
+  max-width:900px;
+  box-shadow:0 6px 26px rgba(0,0,0,.6)
+}
+.card h2{color:#fff;margin-top:0}
 
-    section { padding: 36px 0; }
+/* Gallery */
+.gallery{
+  display:flex;flex-wrap:wrap;
+  gap:12px;justify-content:center
+}
+.gallery img{
+  width:260px;height:160px;object-fit:cover;
+  border-radius:6px;
+  border:2px solid rgba(255,30,0,.12);
+  transition:transform .25s,box-shadow .25s
+}
+.gallery img:hover{
+  transform:scale(1.04);
+  box-shadow:0 8px 24px rgba(255,30,0,.12)
+}
 
-    /* Gallery */
-    .gallery {
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      justify-content:center;
-      align-items:center;
-    }
-    .gallery img {
-      width: 260px;
-      height: 160px;
-      object-fit: cover;
-      border-radius:6px;
-      border:2px solid rgba(255,30,0,0.12);
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-    .gallery img:hover { transform: scale(1.04); box-shadow: 0 8px 24px rgba(255,30,0,0.12); }
+/* Contact & footer */
+.contact p{color:var(--muted)}
+footer{
+  margin-top:26px;padding:22px 8px;
+  color:#999;border-top:1px solid rgba(255,255,255,.03);
+  text-align:center
+}
 
-    /* Contact */
-    .contact p { color: var(--muted); }
-
-    footer {
-      margin-top: 26px;
-      padding: 22px 8px;
-      color: #999;
-      border-top: 1px solid rgba(255,255,255,0.03);
-      text-align:center;
-    }
-
-    @media (min-width:1100px) {
-      .lead { font-size: 1.12rem; }
-      .hero h1 { font-size: 2.8rem; }
-    }
-  </style>
+/* Responsive */
+@media(max-width:768px){
+  .hero h1{font-size:1.8rem}
+  .btn{padding:10px 24px;font-size:.9rem}
+  .gallery img{width:45%;height:auto}
+}
+@media(max-width:480px){
+  nav a{margin:0 10px;font-size:.85rem}
+  .gallery img{width:90%}
+}
+</style>
 </head>
 <body>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#imageinfo">About the Image</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#imageinfo">About Image</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-  <div class="wrap">
+<div class="wrap">
 
-    <!-- HOME -->
-    <section id="home" class="hero">
-      <h1>The Movie Clown — Coming Soon</h1>
+<section id="home" class="hero fade">
+  <h1 class="glow">The Movie Clown — Coming Soon</h1>
+  <img class="poster"
+       src="https://raw.githubusercontent.com/stanham6-ui/movieclown/main/IMG_0236.jpeg"
+       alt="The Movie Clown promotional poster — Ham Barron">
+  <p class="lead">
+    Presented by <strong>Mavel Studios</strong>. A cinematic thriller that blends mystery and art. Scroll to learn more and discover the story behind the poster.
+  </p>
+  <button class="btn" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ','_blank')">
+    ▶ Watch Trailer
+  </button>
+</section>
 
-      <!-- Use the raw GitHub image link so it shows correctly -->
-      <img class="poster"
-           src="https://raw.githubusercontent.com/stanham6-ui/movieclown/main/IMG_0236.jpeg"
-           alt="The Movie Clown promotional poster — Ham Barron">
-
-      <p class="lead">
-        Presented by <strong>Mavel Studios</strong>. This page is a promotional landing for the upcoming cinema release <em>The Movie Clown</em>.
-        Scroll to learn more, view the poster, and read the creators' statement about the image.
-      </p>
-    </section>
-
-    <!-- ABOUT (film) -->
-    <section id="about">
-      <div class="card" role="region" aria-labelledby="about-title">
-        <h2 id="about-title">About the Film</h2>
-        <p>
-          <em>The Movie Clown</em> explores the blurred line between performance and identity — a psychological thriller where
-          laughter masks deeper mysteries. The film mixes art-house visuals with a suspenseful storyline to create an immersive cinematic experience.
-        </p>
-      </div>
-    </section>
-
-    <!-- EXPLICIT IMAGE WRITE-UP (this is the detailed text you asked for) -->
-    <section id="imageinfo">
-      <div class="card" role="region" aria-labelledby="imageinfo-title">
-        <h2 id="imageinfo-title">About this image</h2>
-
-        <p>
-          The person shown in this picture is <strong>not real.</strong> This visual is a digitally created and animated promotional image
-          produced solely for the upcoming cinema movie titled <strong>The Movie Clown</strong>, which is currently listed as <strong>coming soon</strong>.
-        </p>
-
-        <p>
-          The name <strong>Ham Barron</strong> is a <strong>fictional identity</strong> attached to the artwork for creative and marketing purposes only.
-          There is <strong>no real actor, model, or public figure</strong> named Ham Barron associated with this image, and the name does not refer to any real person.
-        </p>
-
-        <p>
-          To be clear: <strong>Ham Barron is not a character in the film</strong> and does not appear as a named role in the movie’s storyline.
-          The image functions purely as an artistic and promotional concept intended to evoke the film’s themes of illusion, performance, and hidden identity.
-        </p>
-
-        <p>
-          The creators and producers confirm that this image is used exclusively for advertising and creative branding and is not intended to represent a real individual.
-        </p>
-      </div>
-    </section>
-
-    <!-- GALLERY -->
-    <section id="gallery">
-      <h2>Gallery</h2>
-      <p style="color:var(--muted); text-align:center; max-width:820px; margin: 6px auto 18px;">
-        Poster previews and promotional images — more will be added as production progresses.
-      </p>
-      <div class="gallery" aria-label="Poster Gallery">
-        <img src="https://raw.githubusercontent.com/stanham6-ui/movieclown/main/IMG_0236.jpeg" alt="Poster 1">
-        <img src="https://raw.githubusercontent.com/stanham6-ui/movieclown/main/IMG_0236.jpeg" alt="Poster 2">
-        <img src="https://raw.githubusercontent.com/stanham6-ui/movieclown/main/IMG_0236.jpeg" alt="Poster 3">
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="contact">
-      <h2>Contact</h2>
-      <p>
-        For press, partnerships, or inquiries: <strong>contact@movieclown.com</strong>
-      </p>
-      <p style="color:var(--muted);">
-        Presented by <strong>Mavel Studios</strong> — © 2025
-      </p>
-    </section>
-
-    <footer>
-      Thank you for visiting — share this page to spread the word about <em>The Movie Clown</em>.
-    </footer>
+<section id="about" class="fade">
+  <div class="card">
+    <h2>About the Film</h2>
+    <p>
+      <em>The Movie Clown</em> dives into the psychology of performance and identity — a thriller where laughter and madness intertwine.
+      With a cinematic look inspired by classic film noir and modern suspense, it invites audiences to question what is real behind the mask.
+    </p>
   </div>
+</section>
+
+<section id="imageinfo" class="fade">
+  <div class="card">
+    <h2>About This Image</h2>
+    <p>
+      The person shown here is <strong>not real.</strong> This digitally created image was produced only for the cinema movie <em>The Movie Clown</em>, coming soon to theatres.
+    </p>
+    <p>
+      The name <strong>Ham Barron</strong> is a fictional identity used for promotional purposes. There is no real actor or person by that name; it does not represent a character in the film.
+    </p>
+    <p>
+      This image is an artistic concept created to reflect the film’s themes of illusion, performance, and hidden truth. Its purpose is solely creative and promotional.
+    </p>
+  </div>
+</section>
+
+<section id="gallery" class="fade">
+  <h2 style="text-align:center;color:var(--accent)">Gallery</h2>
+  <p style="text-align:center;color:var(--muted)">More teasers and stills will arrive as production unfolds.</p>
+  <div class="gallery">
+    <img src="https://raw.githubusercontent.com/stanham6-ui/movieclown/main/IMG_0236.jpeg" alt="Poster 1">
+    <img src="https://raw.githubusercontent.com/stanham6-ui/movieclown/main/IMG_0236.jpeg" alt="Poster 2">
+    <img src="https://raw.githubusercontent.com/stanham6-ui/movieclown/main/IMG_0236.jpeg" alt="Poster 3">
+  </div>
+</section>
+
+<section id="contact" class="contact fade" style="text-align:center">
+  <h2 style="color:var(--accent)">Contact</h2>
+  <p>Press & Partnerships: <strong>contact@movieclown.com</strong></p>
+  <p style="color:var(--muted)">© 2025 Mavel Studios | All Rights Reserved</p>
+</section>
+
+<footer>Thank you for visiting — share this page and follow for updates.</footer>
+</div>
+
+<script>
+/* Fade-in on scroll */
+const fades=document.querySelectorAll('.fade');
+const appear=()=>fades.forEach(el=>{
+  const rect=el.getBoundingClientRect();
+  if(rect.top<window.innerHeight-100) el.classList.add('visible');
+});
+window.addEventListener('scroll',appear);
+window.addEventListener('load',appear);
+</script>
 
 </body>
 </html>
